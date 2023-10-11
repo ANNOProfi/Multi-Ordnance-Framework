@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+      <RoyalTitlePermitDef>
+        <defName>SP_CallShieldbreakerStrike</defName>
+        <label>call shieldbreaker strike</label>
+        <description>Call a single-impact aerodrone strike at a target position.</description>
+        <workerClass>ShieldbreakerPermits.SP_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
+        <minTitle>Knight</minTitle>
+        <faction>Empire</faction>
+        <permitPointCost>1</permitPointCost>
+        <cooldownDays>45</cooldownDays>
+        <uiPosition>(2,5)</uiPosition>
+        <royalAid>
+          <favorCost>6</favorCost>
+          <targetingRange>44.9</targetingRange>
+          <radius>2.9</radius>
+          <explosionRadiusRange>7.9</explosionRadiusRange>
+          <explosionCount>0</explosionCount>
+          <intervalTicks>60</intervalTicks>
+          <warmupTicks>120</warmupTicks>
+        </royalAid>
+        <modExtensions>
+          <li Class="ShieldbreakerPermits.SP_RoyalAid">
+            <empCount>1</empCount>
+          </li>
+        </modExtensions>
+      </RoyalTitlePermitDef>
+</Defs>

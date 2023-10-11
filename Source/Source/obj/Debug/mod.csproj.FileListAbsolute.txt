@@ -1,0 +1,7 @@
+D:\ANNOP\Steam\steamapps\common\RimWorld\Mods\Shieldbreaker Permits\1.4\Assemblies\ShieldbreakerPermits.dll
+D:\ANNOP\Steam\steamapps\common\RimWorld\Mods\Shieldbreaker Permits\Source\Source\obj\Debug\mod.csproj.AssemblyReference.cache
+D:\ANNOP\Steam\steamapps\common\RimWorld\Mods\Shieldbreaker Permits\Source\Source\obj\Debug\mod.GeneratedMSBuildEditorConfig.editorconfig
+D:\ANNOP\Steam\steamapps\common\RimWorld\Mods\Shieldbreaker Permits\Source\Source\obj\Debug\mod.AssemblyInfoInputs.cache
+D:\ANNOP\Steam\steamapps\common\RimWorld\Mods\Shieldbreaker Permits\Source\Source\obj\Debug\mod.AssemblyInfo.cs
+D:\ANNOP\Steam\steamapps\common\RimWorld\Mods\Shieldbreaker Permits\Source\Source\obj\Debug\mod.csproj.CoreCompileInputs.cache
+D:\ANNOP\Steam\steamapps\common\RimWorld\Mods\Shieldbreaker Permits\Source\Source\obj\Debug\ShieldbreakerPermits.dll
