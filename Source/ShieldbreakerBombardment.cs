@@ -89,7 +89,7 @@ namespace ShieldbreakerPermits
 			List<Thing> list = base.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
 			for (int i = 0; i < list.Count; i++)
 			{
-				if (list[i].TryGetComp<SP_CompProjectileInterceptor>().CheckBombardmentIntercept((ShieldbreakerBombardment)this, proj))
+				if (list[i].TryGetComp<SP_CompProjectileInterceptor>().CheckBombardmentIntercept(this, proj))
 				{
 					return;
 				}
@@ -120,13 +120,13 @@ namespace ShieldbreakerPermits
 
         private void StartRandomFire()
 		{
-			IntVec3 intVec = (from x in GenRadial.RadialCellsAround(base.Position, (float)this.randomFireRadius, true)
+			IntVec3 intVec = (from x in GenRadial.RadialCellsAround(base.Position, randomFireRadius, true)
 			where x.InBounds(base.Map)
 			select x).RandomElementByWeight((IntVec3 x) => Bombardment.DistanceChanceFactor.Evaluate(x.DistanceTo(base.Position)));
 			List<Thing> list = base.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
 			for (int i = 0; i < list.Count; i++)
 			{
-				if (!list[i].TryGetComp<SP_CompProjectileInterceptor>().BombardmentCanStartFireAt((ShieldbreakerBombardment)this, intVec))
+				if (!list[i].TryGetComp<SP_CompProjectileInterceptor>().BombardmentCanStartFireAt(this, intVec))
 				{
 					return;
 				}
