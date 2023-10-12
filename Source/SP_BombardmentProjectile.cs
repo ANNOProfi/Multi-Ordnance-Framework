@@ -5,6 +5,13 @@ namespace ShieldbreakerPermits
 {
     public class SP_BombardmentProjectile : IExposable
     {
+        public DamageDef DamageDef
+        {
+            get
+            {
+                return this.damageDef;
+            }
+        }
         public int LifeTime
         {
             get
@@ -17,11 +24,12 @@ namespace ShieldbreakerPermits
         {
         }
 
-        public SP_BombardmentProjectile(int lifeTime, IntVec3 targetCell)
+        public SP_BombardmentProjectile(int lifeTime, IntVec3 targetCell, DamageDef damageDef)
         {
             this.lifeTime = lifeTime;
             this.maxLifeTime = lifeTime;
             this.targetCell = targetCell;
+            this.damageDef = damageDef;
         }
 
         public void Tick()
@@ -48,6 +56,8 @@ namespace ShieldbreakerPermits
             Scribe_Values.Look<int>(ref this.maxLifeTime, "maxLifeTime", 0, false);
             Scribe_Values.Look<IntVec3>(ref this.targetCell, "targetCell", default(IntVec3), false);
         }
+
+        private DamageDef damageDef;
 
         private int lifeTime;
 

@@ -5,8 +5,8 @@ namespace ShieldbreakerPermits
 {
     public class SP_RoyalAid : DefModExtension
     {
-        public int empCount;
+        //public int empCount;
 
-        public List<DamageDef> shellType;
+        public List<SP_ShellTypes> shellType;
     }
 }

@@ -22,7 +22,12 @@ namespace ShieldbreakerPermits
 
         public override void StartStrike()
 		{
-			this.duration = this.bombIntervalTicks * (this.explosionCount+this.empCount);
+			//shellType.Reverse();
+			for(int i = 0; i<shellType.Count; i++)
+			{
+				this.explosionCount += shellType[i].volleySize;
+			}
+			this.duration = this.bombIntervalTicks * this.explosionCount;
 			base.StartStrike();
 		}
 
@@ -62,29 +67,54 @@ namespace ShieldbreakerPermits
 			if (this.ticksToNextEffect <= 0 && base.TicksLeft >= this.bombIntervalTicks)
 			{
 				SoundDefOf.Bombardment_PreImpact.PlayOneShot(new TargetInfo(this.nextExplosionCell, base.Map, false));
-				this.projectiles.Add(new SP_BombardmentProjectile(60, this.nextExplosionCell));
+				/*for(int i = 0; i<shellType.Count; i++)
+				{
+					Log.Message("new projectile");
+					Log.Message("ShellType: "+ shellType[i].damage);
+					//Log.Message("volleySize: "+ shellType[i].volleySize);
+					this.projectiles.Add(new SP_BombardmentProjectile(60, this.nextExplosionCell, shellType[i].damage));
+				}*/
+				//Log.Message((explosionCount-shotsFired).ToString());
+				
+				if(shotsFired < shellType[volleysFired].volleySize)
+				{
+					this.projectiles.Add(new SP_BombardmentProjectile(60, this.nextExplosionCell, shellType[volleysFired].damage));
+				}
+				else
+				{
+					shotsFired = 0;
+					volleysFired++;
+					this.projectiles.Add(new SP_BombardmentProjectile(60, this.nextExplosionCell, shellType[volleysFired].damage));
+				}
 				this.ticksToNextEffect = this.bombIntervalTicks;
 				this.GetNextExplosionCell();
 			}
 			for (int i = this.projectiles.Count - 1; i >= 0; i--)
 			{
+				//Log.Message("projectiles.Count: "+projectiles.Count);
+				//Log.Message("projectile damage: "+projectiles[i].DamageDef);
 				this.projectiles[i].Tick();
 				if (this.projectiles[i].LifeTime <= 0)
 				{
-					if(i>this.explosionCount)
+					/*Log.Message("projectile #"+i);
+					if(i>(this.explosionCount-this.empCount))
 					{
+						Log.Message("Doing EMP projectile");
 						this.TryDoExplosion(this.projectiles[i], DamageDefOf.EMP);
 					}
 					else
 					{
+						Log.Message("Doing regular projectile");
 						this.TryDoExplosion(this.projectiles[i], DamageDefOf.Bomb);
-					}
+					}*/
+					this.TryDoExplosion(this.projectiles[i], this.projectiles[i].DamageDef);
 					this.projectiles.RemoveAt(i);
+					shotsFired++;
 				}
 			}
 		}
 
-        private void TryDoExplosion(SP_BombardmentProjectile proj, DamageDef bomb)
+        private void TryDoExplosion(SP_BombardmentProjectile proj, DamageDef damage)
 		{
 			List<Thing> list = base.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
 			for (int i = 0; i < list.Count; i++)
@@ -102,7 +132,7 @@ namespace ShieldbreakerPermits
 			float armorPenetration = -1f;
 			SoundDef explosionSound = null;
 			ThingDef def = this.def;
-			GenExplosion.DoExplosion(targetCell, map, randomInRange, bomb, instigator, damAmount, armorPenetration, explosionSound, this.weaponDef, def, null, null, 0f, 1, null, false, null, 0f, 1, 0f, false, null, null, null, true, 1f, 0f, true, null, 1f);
+			GenExplosion.DoExplosion(targetCell, map, randomInRange, damage, instigator, damAmount, armorPenetration, explosionSound, this.weaponDef, def, null, null, 0f, 1, null, false, null, 0f, 1, 0f, false, null, null, null, true, 1f, 0f, true, null, 1f);
 		}
 
         public override void Draw()
@@ -122,7 +152,7 @@ namespace ShieldbreakerPermits
 		{
 			IntVec3 intVec = (from x in GenRadial.RadialCellsAround(base.Position, randomFireRadius, true)
 			where x.InBounds(base.Map)
-			select x).RandomElementByWeight((IntVec3 x) => Bombardment.DistanceChanceFactor.Evaluate(x.DistanceTo(base.Position)));
+			select x).RandomElementByWeight((IntVec3 x) => ShieldbreakerBombardment.DistanceChanceFactor.Evaluate(x.DistanceTo(base.Position)));
 			List<Thing> list = base.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
 			for (int i = 0; i < list.Count; i++)
 			{
@@ -138,7 +168,7 @@ namespace ShieldbreakerPermits
 		{
 			this.nextExplosionCell = (from x in GenRadial.RadialCellsAround(base.Position, this.impactAreaRadius, true)
 			where x.InBounds(base.Map)
-			select x).RandomElementByWeight((IntVec3 x) => Bombardment.DistanceChanceFactor.Evaluate(x.DistanceTo(base.Position) / this.impactAreaRadius));
+			select x).RandomElementByWeight((IntVec3 x) => ShieldbreakerBombardment.DistanceChanceFactor.Evaluate(x.DistanceTo(base.Position) / this.impactAreaRadius));
 		}
 
         public override void ExposeData()
@@ -151,7 +181,7 @@ namespace ShieldbreakerPermits
 			Scribe_Values.Look<int>(ref this.warmupTicks, "warmupTicks", 0, false);
 			Scribe_Values.Look<int>(ref this.ticksToNextEffect, "ticksToNextEffect", 0, false);
 			Scribe_Values.Look<IntVec3>(ref this.nextExplosionCell, "nextExplosionCell", default(IntVec3), false);
-			Scribe_Values.Look<int>(ref this.empCount, "empCount", 1, false);
+			//Scribe_Values.Look<int>(ref this.empCount, "empCount", 1, false);
 			Scribe_Collections.Look<SP_BombardmentProjectile>(ref this.projectiles, "projectiles", LookMode.Deep, Array.Empty<object>());
 			if (Scribe.mode == LoadSaveMode.PostLoadInit)
 			{
@@ -166,7 +196,13 @@ namespace ShieldbreakerPermits
 			}
 		}
 
-		public int empCount = 1;
+		private int shotsFired = 0;
+
+		private int volleysFired = 0;
+
+		public List<SP_ShellTypes> shellType = new List<SP_ShellTypes>();
+
+		//public int empCount = 1;
 
 		public float impactAreaRadius = 15f;
 
@@ -176,7 +212,7 @@ namespace ShieldbreakerPermits
 
 		public int bombIntervalTicks = 18;
 
-		public int explosionCount = 30;
+		private int explosionCount = 0;
 
 		public int warmupTicks = 60;
 

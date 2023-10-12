@@ -16,23 +16,50 @@ namespace ShieldbreakerPermits
 
         public bool CheckBombardmentIntercept(ShieldbreakerBombardment bombardment, SP_BombardmentProjectile projectile)
 		{
-			if (!this.Active || !this.Props.interceptAirProjectiles)
-			{
-				return false;
-			}
-			if (!projectile.targetCell.InHorDistOf(this.parent.Position, this.Props.radius))
-			{
-				return false;
-			}
-			if ((bombardment.instigator == null || !bombardment.instigator.HostileTo(this.parent)) && !this.debugInterceptNonHostileProjectiles && !this.Props.interceptNonHostileProjectiles)
-			{
-				return false;
-			}
-			this.lastInterceptTicks = Find.TickManager.TicksGame;
-			this.drawInterceptCone = false;
-			this.TriggerEffecter(projectile.targetCell);
-			return true;
+			if (!Active || !Props.interceptAirProjectiles)
+            {
+                return false;
+            }
+
+            if (!projectile.targetCell.InHorDistOf(parent.Position, Props.radius))
+            {
+                return false;
+            }
+
+            if ((bombardment.instigator == null || !bombardment.instigator.HostileTo(parent)) && !debugInterceptNonHostileProjectiles && !Props.interceptNonHostileProjectiles)
+            {
+                return false;
+            }
+
+            lastInterceptTicks = Find.TickManager.TicksGame;
+            drawInterceptCone = false;
+            TriggerEffecter(projectile.targetCell);
+            return true;
 		}
+
+        private void BreakShieldEmp(DamageInfo dinfo)
+        {
+            float fTheta;
+            Vector3 center;
+            if (Active)
+            {
+                EffecterDefOf.Shield_Break.SpawnAttached(parent, parent.MapHeld, Props.radius);
+                int num = Mathf.CeilToInt(Props.radius * 2f);
+                fTheta = (float)Math.PI * 2f / (float)num;
+                center = parent.TrueCenter();
+                for (int i = 0; i < num; i++)
+                {
+                    FleckMaker.ConnectingLine(PosAtIndex(i), PosAtIndex((i + 1) % num), FleckDefOf.LineEMP, parent.Map, 1.5f);
+                }
+            }
+
+            dinfo.SetAmount((float)Props.disarmedByEmpForTicks / 30f);
+            stunner.Notify_DamageApplied(dinfo);
+            Vector3 PosAtIndex(int index)
+            {
+                return new Vector3(Props.radius * Mathf.Cos(fTheta * (float)index) + center.x, 0f, Props.radius * Mathf.Sin(fTheta * (float)index) + center.z);
+            }
+        }
 
         private void TriggerEffecter(IntVec3 pos)
 		{
@@ -43,11 +70,23 @@ namespace ShieldbreakerPermits
         
         public  bool BombardmentCanStartFireAt(ShieldbreakerBombardment bombardment, IntVec3 cell)
 		{
-			return !this.Active || !this.Props.interceptAirProjectiles || ((bombardment.instigator == null || !bombardment.instigator.HostileTo(this.parent)) && !this.debugInterceptNonHostileProjectiles && !this.Props.interceptNonHostileProjectiles) || !cell.InHorDistOf(this.parent.Position, this.Props.radius);
+			if (!Active || !Props.interceptAirProjectiles)
+            {
+                return true;
+            }
+
+            if ((bombardment.instigator == null || !bombardment.instigator.HostileTo(parent)) && !debugInterceptNonHostileProjectiles && !Props.interceptNonHostileProjectiles)
+            {
+                return true;
+            }
+
+            return !cell.InHorDistOf(parent.Position, Props.radius);
 		}
 
         private int lastInterceptTicks = -999999;
 
         private bool drawInterceptCone;
+
+        private StunHandler stunner;
     }
 }

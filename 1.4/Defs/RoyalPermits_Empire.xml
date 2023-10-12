@@ -13,15 +13,19 @@
         <royalAid>
           <favorCost>6</favorCost>
           <targetingRange>44.9</targetingRange>
-          <radius>2.9</radius>
+          <radius>10</radius>
           <explosionRadiusRange>7.9</explosionRadiusRange>
-          <explosionCount>0</explosionCount>
+          <!--<explosionCount>0</explosionCount>-->
           <intervalTicks>60</intervalTicks>
           <warmupTicks>120</warmupTicks>
         </royalAid>
         <modExtensions>
           <li Class="ShieldbreakerPermits.SP_RoyalAid">
-            <empCount>1</empCount>
+            <!--<empCount>1</empCount>-->
+            <shellType>
+              <EMP>3</EMP>
+              <!--<Flame>2</Flame>-->
+            </shellType>
           </li>
         </modExtensions>
       </RoyalTitlePermitDef>
