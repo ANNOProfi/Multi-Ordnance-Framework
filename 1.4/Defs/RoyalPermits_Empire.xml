@@ -13,7 +13,7 @@
         <royalAid>
           <favorCost>6</favorCost>
           <targetingRange>44.9</targetingRange>
-          <radius>10</radius>
+          <radius>1</radius>
           <explosionRadiusRange>7.9</explosionRadiusRange>
           <!--<explosionCount>0</explosionCount>-->
           <intervalTicks>60</intervalTicks>

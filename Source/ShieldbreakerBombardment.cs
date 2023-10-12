@@ -9,26 +9,18 @@ using Verse.Sound;
 namespace ShieldbreakerPermits
 {
     [StaticConstructorOnStartup]
-    public class ShieldbreakerBombardment : OrbitalStrike
+    public class ShieldbreakerBombardment : Bombardment
     {
-		public override void SpawnSetup(Map map, bool respawningAfterReload)
-		{
-			base.SpawnSetup(map, respawningAfterReload);
-			if (!respawningAfterReload)
-			{
-				this.GetNextExplosionCell();
-			}
-		}
-
         public override void StartStrike()
 		{
 			//shellType.Reverse();
 			for(int i = 0; i<shellType.Count; i++)
 			{
-				this.explosionCount += shellType[i].volleySize;
+				this.volleyCount += shellType[i].volleySize;
 			}
-			this.duration = this.bombIntervalTicks * this.explosionCount;
 			base.StartStrike();
+			this.duration = this.bombIntervalTicks * this.volleyCount;
+			
 		}
 
         public override void Tick()
@@ -67,25 +59,7 @@ namespace ShieldbreakerPermits
 			if (this.ticksToNextEffect <= 0 && base.TicksLeft >= this.bombIntervalTicks)
 			{
 				SoundDefOf.Bombardment_PreImpact.PlayOneShot(new TargetInfo(this.nextExplosionCell, base.Map, false));
-				/*for(int i = 0; i<shellType.Count; i++)
-				{
-					Log.Message("new projectile");
-					Log.Message("ShellType: "+ shellType[i].damage);
-					//Log.Message("volleySize: "+ shellType[i].volleySize);
-					this.projectiles.Add(new SP_BombardmentProjectile(60, this.nextExplosionCell, shellType[i].damage));
-				}*/
-				//Log.Message((explosionCount-shotsFired).ToString());
-				
-				if(shotsFired < shellType[volleysFired].volleySize)
-				{
-					this.projectiles.Add(new SP_BombardmentProjectile(60, this.nextExplosionCell, shellType[volleysFired].damage));
-				}
-				else
-				{
-					shotsFired = 0;
-					volleysFired++;
-					this.projectiles.Add(new SP_BombardmentProjectile(60, this.nextExplosionCell, shellType[volleysFired].damage));
-				}
+				this.projectiles.Add(new Bombardment.BombardmentProjectile(60, this.nextExplosionCell));
 				this.ticksToNextEffect = this.bombIntervalTicks;
 				this.GetNextExplosionCell();
 			}
@@ -107,19 +81,29 @@ namespace ShieldbreakerPermits
 						Log.Message("Doing regular projectile");
 						this.TryDoExplosion(this.projectiles[i], DamageDefOf.Bomb);
 					}*/
-					this.TryDoExplosion(this.projectiles[i], this.projectiles[i].DamageDef);
+					//this.TryDoExplosion(this.projectiles[i], DamageDefOf.EMP);
+					if(shotsFired < shellType[volleysFired].volleySize)
+					{
+						this.TryDoExplosion(this.projectiles[i], shellType[volleysFired].damage);
+					}
+					else
+					{
+						shotsFired = 0;
+						volleysFired++;
+						this.TryDoExplosion(this.projectiles[i], shellType[volleysFired].damage);
+					}
 					this.projectiles.RemoveAt(i);
 					shotsFired++;
 				}
 			}
 		}
 
-        private void TryDoExplosion(SP_BombardmentProjectile proj, DamageDef damage)
+        private void TryDoExplosion(BombardmentProjectile proj, DamageDef damage)
 		{
 			List<Thing> list = base.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
 			for (int i = 0; i < list.Count; i++)
 			{
-				if (list[i].TryGetComp<SP_CompProjectileInterceptor>().CheckBombardmentIntercept(this, proj))
+				if (list[i].TryGetComp<CompProjectileInterceptor>().CheckBombardmentIntercept(this, proj))
 				{
 					return;
 				}
@@ -135,16 +119,16 @@ namespace ShieldbreakerPermits
 			GenExplosion.DoExplosion(targetCell, map, randomInRange, damage, instigator, damAmount, armorPenetration, explosionSound, this.weaponDef, def, null, null, 0f, 1, null, false, null, 0f, 1, 0f, false, null, null, null, true, 1f, 0f, true, null, 1f);
 		}
 
-        public override void Draw()
+		public override void Draw()
 		{
 			base.Draw();
-			if (this.projectiles.NullOrEmpty<SP_BombardmentProjectile>())
+			if (this.projectiles.NullOrEmpty<ShieldbreakerBombardment.BombardmentProjectile>())
 			{
 				return;
 			}
 			for (int i = 0; i < this.projectiles.Count; i++)
 			{
-				this.projectiles[i].Draw(ProjectileMaterial);
+				this.projectiles[i].Draw(ShieldbreakerBombardment.ProjectileMaterial);
 			}
 		}
 
@@ -156,7 +140,7 @@ namespace ShieldbreakerPermits
 			List<Thing> list = base.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
 			for (int i = 0; i < list.Count; i++)
 			{
-				if (!list[i].TryGetComp<SP_CompProjectileInterceptor>().BombardmentCanStartFireAt(this, intVec))
+				if (!list[i].TryGetComp<CompProjectileInterceptor>().BombardmentCanStartFireAt(this, intVec))
 				{
 					return;
 				}
@@ -182,7 +166,7 @@ namespace ShieldbreakerPermits
 			Scribe_Values.Look<int>(ref this.ticksToNextEffect, "ticksToNextEffect", 0, false);
 			Scribe_Values.Look<IntVec3>(ref this.nextExplosionCell, "nextExplosionCell", default(IntVec3), false);
 			//Scribe_Values.Look<int>(ref this.empCount, "empCount", 1, false);
-			Scribe_Collections.Look<SP_BombardmentProjectile>(ref this.projectiles, "projectiles", LookMode.Deep, Array.Empty<object>());
+			Scribe_Collections.Look<BombardmentProjectile>(ref this.projectiles, "projectiles", LookMode.Deep, Array.Empty<object>());
 			if (Scribe.mode == LoadSaveMode.PostLoadInit)
 			{
 				if (!this.nextExplosionCell.IsValid)
@@ -191,7 +175,7 @@ namespace ShieldbreakerPermits
 				}
 				if (this.projectiles == null)
 				{
-					this.projectiles = new List<SP_BombardmentProjectile>();
+					this.projectiles = new List<BombardmentProjectile>();
 				}
 			}
 		}
@@ -204,25 +188,25 @@ namespace ShieldbreakerPermits
 
 		//public int empCount = 1;
 
-		public float impactAreaRadius = 15f;
+		//public float impactAreaRadius = 15f;
 
-		public FloatRange explosionRadiusRange = new FloatRange(6f, 8f);
+		//public FloatRange explosionRadiusRange = new FloatRange(6f, 8f);
 
-		public int randomFireRadius = 25;
+		//public int randomFireRadius = 25;
 
-		public int bombIntervalTicks = 18;
+		//public int bombIntervalTicks = 18;
 
-		private int explosionCount = 0;
+		private int volleyCount = 0;
 
-		public int warmupTicks = 60;
+		//public int warmupTicks = 60;
 
 		private int ticksToNextEffect;
 
 		private IntVec3 nextExplosionCell = IntVec3.Invalid;
 
-		private List<SP_BombardmentProjectile> projectiles = new List<SP_BombardmentProjectile>();
+		private List<BombardmentProjectile> projectiles = new List<BombardmentProjectile>();
 
-		public const int EffectiveAreaRadius = 23;
+		//public const int EffectiveAreaRadius = 23;
 
 		private const int StartRandomFireEveryTicks = 20;
 
@@ -230,7 +214,7 @@ namespace ShieldbreakerPermits
 
 		private static readonly Material ProjectileMaterial = MaterialPool.MatFrom("Things/Projectile/Bullet_Big", ShaderDatabase.Transparent, Color.white);
 
-		public static readonly SimpleCurve DistanceChanceFactor = new SimpleCurve
+		/*public static readonly SimpleCurve DistanceChanceFactor = new SimpleCurve
 		{
 			{
 				new CurvePoint(0f, 1f),
@@ -240,6 +224,6 @@ namespace ShieldbreakerPermits
 				new CurvePoint(1f, 0.1f),
 				true
 			}
-		};
+		};*/
     }
 }
