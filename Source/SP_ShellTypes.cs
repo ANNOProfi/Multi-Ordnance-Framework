@@ -10,6 +10,10 @@ namespace ShieldbreakerPermits
 
         public int volleySize;
 
+        public ThingDef explosionThing = null;
+
+        public GasType? explosionGas = null;
+
         public void LoadDataFromXmlCustom(XmlNode xmlRoot)
 		{
 			DirectXmlCrossRefLoader.RegisterObjectWantsCrossRef(this, "damage", xmlRoot.Name, null, null, null);

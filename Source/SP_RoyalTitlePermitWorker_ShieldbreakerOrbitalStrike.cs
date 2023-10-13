@@ -5,6 +5,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
+
 namespace ShieldbreakerPermits
 {
     public class SP_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike : RoyalTitlePermitWorker_Targeted

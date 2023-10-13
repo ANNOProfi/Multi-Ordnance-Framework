@@ -14,11 +14,12 @@
 			<downloadUrl>https://steamcommunity.com/workshop/filedetails/?id=2009463077</downloadUrl>
 			<steamWorkshopUrl>https://steamcommunity.com/workshop/filedetails/?id=2009463077</steamWorkshopUrl>
 		</li> -->
+		<packageID>Ludeon.RimWorld.Royalty</packageID>
+		<displayName>Royalty</displayName>
 	</modDependencies>
 
 	<incompatibleWith>
-		<!-- <li>arvkus.template</li> -->
 	</incompatibleWith>
 
-	<description>Template</description>
+	<description>New possibilities for orbital strikes.</description>
 </ModMetaData>

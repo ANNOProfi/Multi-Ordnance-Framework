@@ -11,6 +11,7 @@ namespace ShieldbreakerPermits
             DefOfHelper.EnsureInitializedInCtor(typeof(SP_DefOf));
         }
 
+        [MayRequireRoyalty]
         public static ThingDef ShieldbreakerBombardment;
     }
 }

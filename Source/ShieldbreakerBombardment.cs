@@ -2,6 +2,7 @@ using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
@@ -26,9 +27,67 @@ namespace ShieldbreakerPermits
 			{
 				this.volleyCount += shellType[i].volleySize;
 			}
+			ShellCheck(shellType);
+			//this.duration = this.bombIntervalTicks * this.volleyCount;
+			base.explosionCount = this.volleyCount;
 			base.StartStrike();
-			this.duration = this.bombIntervalTicks * this.volleyCount;
+		}
+
+		/*public ThingDef ShellThingCheck(DamageDef damage)
+		{
+			Log.Message("ShellThingCheck called");
+			Log.Message("ShellDamage: "+damage);
 			
+			
+			if(damage == DamageDefOf.Extinguish)
+			{
+				return ThingDefOf.Filth_FireFoam;
+			}
+			else
+			{
+				Log.Message("Returning Null");
+				return null;
+			}
+			
+			//Log.Message("Projectile "+shell.damage+" "+shell.explosionThing+""+shell.explosionGas);
+		}
+
+		public GasType? ShellGasCheck(DamageDef damage)
+		{
+			Log.Message("ShellGasCheck called");
+			Log.Message("ShellDamage: "+damage);
+			if(damage == DamageDefOf.Smoke)
+			{
+				return GasType.BlindSmoke;
+			}
+			if(damage == DamageDefOf.ToxGas)
+			{
+				return GasType.ToxGas;
+			}
+			else
+			{
+				Log.Message("Returning Null");
+				return null;
+			}
+
+			
+		}*/
+
+		public void ShellCheck(List<SP_ShellTypes> shells)
+		{
+			foreach(SP_ShellTypes shell in shells)
+			if(shell.damage == DamageDefOf.Extinguish)
+			{
+				shell.explosionThing = ThingDefOf.Filth_FireFoam;
+			}
+			else if(shell.damage == DamageDefOf.Smoke)
+			{
+				shell.explosionGas = GasType.BlindSmoke;
+			}
+			else if(shell.damage == DamageDefOf.ToxGas)
+			{
+				shell.explosionGas = GasType.ToxGas;
+			}
 		}
 
         public override void Tick()
@@ -47,7 +106,24 @@ namespace ShieldbreakerPermits
 			}
 			else
 			{
-				base.Tick();
+				//base.explosionCount = 0;
+				//base.duration = 0;
+				//base.Tick();
+				var comps = this.AllComps;
+				if(comps != null)
+				{
+					int i = 0;
+					int count = this.AllComps.Count;
+					while(i < count)
+					{
+						comps[i].CompTick();
+						i++;
+					}
+				}
+				if (TicksPassed >= duration)
+				{
+					Destroy();
+				}
 				if (Find.TickManager.TicksGame % 20 == 0 && base.TicksLeft > 0)
 				{
 					this.StartRandomFire();
@@ -58,6 +134,10 @@ namespace ShieldbreakerPermits
 
         private void EffectTick()
 		{
+			if(volleysFired == 0 && shotsFired == 0)
+			{
+				this.GetNextExplosionCell();
+			}
 			if (!this.nextExplosionCell.IsValid)
 			{
 				this.ticksToNextEffect = this.warmupTicks - this.bombIntervalTicks;
@@ -92,13 +172,13 @@ namespace ShieldbreakerPermits
 					//this.TryDoExplosion(this.projectiles[i], DamageDefOf.EMP);
 					if(shotsFired < shellType[volleysFired].volleySize)
 					{
-						this.TryDoExplosion(this.projectiles[i], shellType[volleysFired].damage);
+						this.TryDoExplosion(this.projectiles[i], shellType[volleysFired].damage, shellType[volleysFired].explosionThing, shellType[volleysFired].explosionGas);
 					}
 					else
 					{
 						shotsFired = 0;
 						volleysFired++;
-						this.TryDoExplosion(this.projectiles[i], shellType[volleysFired].damage);
+						this.TryDoExplosion(this.projectiles[i], shellType[volleysFired].damage, shellType[volleysFired].explosionThing, shellType[volleysFired].explosionGas);
 					}
 					this.projectiles.RemoveAt(i);
 					shotsFired++;
@@ -106,7 +186,7 @@ namespace ShieldbreakerPermits
 			}
 		}
 
-        private void TryDoExplosion(BombardmentProjectile proj, DamageDef damage)
+        private void TryDoExplosion(BombardmentProjectile proj, DamageDef damage, ThingDef postExplosionThing, GasType? postExplosionGas)
 		{
 			List<Thing> list = base.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
 			for (int i = 0; i < list.Count; i++)
@@ -115,10 +195,10 @@ namespace ShieldbreakerPermits
 				//{
 					if (list[i].TryGetComp<CompProjectileInterceptor>().CheckBombardmentIntercept(this, proj))
 					{
-						if(shellType[volleysFired].damage == DamageDefOf.EMP)
+						if(damage == DamageDefOf.EMP)
 						{
 							bool absorbed = true;
-							list[i].TryGetComp<CompProjectileInterceptor>().PostPreApplyDamage(new DamageInfo(shellType[volleysFired].damage, shellType[volleysFired].damage.defaultDamage), out absorbed);
+							list[i].TryGetComp<CompProjectileInterceptor>().PostPreApplyDamage(new DamageInfo(damage, damage.defaultDamage), out absorbed);
 						}
 						else
 						{
@@ -146,7 +226,8 @@ namespace ShieldbreakerPermits
 			float armorPenetration = -1f;
 			SoundDef explosionSound = null;
 			ThingDef def = this.def;
-			GenExplosion.DoExplosion(targetCell, map, randomInRange, damage, instigator, damAmount, armorPenetration, explosionSound, this.weaponDef, def, null, null, 0f, 1, null, false, null, 0f, 1, 0f, false, null, null, null, true, 1f, 0f, true, null, 1f);
+			Log.Message("Projectile "+damage+" "+postExplosionThing+""+postExplosionGas);
+			GenExplosion.DoExplosion(targetCell, map, randomInRange, damage, instigator, damAmount, armorPenetration, explosionSound, this.weaponDef, def, null, postExplosionThing, 1f, 3, postExplosionGas, false, null, 0f, 1, 0f, false, null, null, null, true, 1f, 0f, true, null, 1f);
 		}
 
 		public override void Draw()
@@ -166,7 +247,7 @@ namespace ShieldbreakerPermits
 		{
 			IntVec3 intVec = (from x in GenRadial.RadialCellsAround(base.Position, randomFireRadius, true)
 			where x.InBounds(base.Map)
-			select x).RandomElementByWeight((IntVec3 x) => ShieldbreakerBombardment.DistanceChanceFactor.Evaluate(x.DistanceTo(base.Position)));
+			select x).RandomElementByWeight((IntVec3 x) => DistanceChanceFactor.Evaluate(x.DistanceTo(base.Position)));
 			List<Thing> list = base.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
 			for (int i = 0; i < list.Count; i++)
 			{
@@ -182,7 +263,7 @@ namespace ShieldbreakerPermits
 		{
 			this.nextExplosionCell = (from x in GenRadial.RadialCellsAround(base.Position, this.impactAreaRadius, true)
 			where x.InBounds(base.Map)
-			select x).RandomElementByWeight((IntVec3 x) => ShieldbreakerBombardment.DistanceChanceFactor.Evaluate(x.DistanceTo(base.Position) / this.impactAreaRadius));
+			select x).RandomElementByWeight((IntVec3 x) => DistanceChanceFactor.Evaluate(x.DistanceTo(base.Position) / this.impactAreaRadius));
 		}
 
         public override void ExposeData()
