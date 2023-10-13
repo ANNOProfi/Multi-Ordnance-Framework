@@ -82,7 +82,7 @@ namespace ShieldbreakerPermits
 			bombardment.explosionRadiusRange = this.def.royalAid.explosionRadiusRange;
 			bombardment.bombIntervalTicks = this.def.royalAid.intervalTicks;
 			bombardment.randomFireRadius = 1;
-			//bombardment.explosionCount = this.def.royalAid.explosionCount;
+			bombardment.explosionCount = -1;
             //bombardment.empCount = this.def.GetModExtension<SP_RoyalAid>().empCount;
 			bombardment.shellType = this.def.GetModExtension<SP_RoyalAid>().shellType;
 			bombardment.warmupTicks = this.def.royalAid.warmupTicks;

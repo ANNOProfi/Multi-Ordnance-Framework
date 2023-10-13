@@ -11,9 +11,17 @@ namespace ShieldbreakerPermits
     [StaticConstructorOnStartup]
     public class ShieldbreakerBombardment : Bombardment
     {
+		public override void SpawnSetup(Map map, bool respawningAfterReload)
+		{
+			base.SpawnSetup(map, respawningAfterReload);
+			if (!respawningAfterReload)
+			{
+				GetNextExplosionCell();
+			}
+		}
+
         public override void StartStrike()
 		{
-			//shellType.Reverse();
 			for(int i = 0; i<shellType.Count; i++)
 			{
 				this.volleyCount += shellType[i].volleySize;
@@ -103,10 +111,32 @@ namespace ShieldbreakerPermits
 			List<Thing> list = base.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
 			for (int i = 0; i < list.Count; i++)
 			{
-				if (list[i].TryGetComp<CompProjectileInterceptor>().CheckBombardmentIntercept(this, proj))
+				//if(shellType[volleysFired].damage != DamageDefOf.EMP)
+				//{
+					if (list[i].TryGetComp<CompProjectileInterceptor>().CheckBombardmentIntercept(this, proj))
+					{
+						if(shellType[volleysFired].damage == DamageDefOf.EMP)
+						{
+							bool absorbed = true;
+							list[i].TryGetComp<CompProjectileInterceptor>().PostPreApplyDamage(new DamageInfo(shellType[volleysFired].damage, shellType[volleysFired].damage.defaultDamage), out absorbed);
+						}
+						else
+						{
+							return;
+						}
+						
+						return;
+					}
+				/*}
+				else
 				{
-					return;
-				}
+					if (list[i].TryGetComp<CompProjectileInterceptor>().CheckBombardmentIntercept(this, proj))
+					{
+						bool absorbed = false;
+						list[i].TryGetComp<CompProjectileInterceptor>().PostPreApplyDamage(new DamageInfo(shellType[volleysFired].damage, shellType[volleysFired].damage.defaultDamage), out absorbed);
+					}
+				}*/
+				
 			}
 			IntVec3 targetCell = proj.targetCell;
 			Map map = base.Map;
