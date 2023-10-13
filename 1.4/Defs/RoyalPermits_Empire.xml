@@ -3,7 +3,7 @@
       <RoyalTitlePermitDef>
         <defName>SP_CallShieldbreakerStrike</defName>
         <label>call shieldbreaker strike</label>
-        <description>Call a single-impact aerodrone strike at a target position.</description>
+        <description>Call a single-impact anti-shield aerodrone strike at a target position.</description>
         <workerClass>ShieldbreakerPermits.SP_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
         <minTitle>Knight</minTitle>
         <faction>Empire</faction>
@@ -11,21 +11,238 @@
         <cooldownDays>45</cooldownDays>
         <uiPosition>(2,5)</uiPosition>
         <royalAid>
-          <favorCost>6</favorCost>
+          <favorCost>7</favorCost>
           <targetingRange>44.9</targetingRange>
-          <radius>0.9</radius>
+          <radius>2.9</radius>
           <explosionRadiusRange>7.9</explosionRadiusRange>
-          <!--<explosionCount>0</explosionCount>-->
           <intervalTicks>60</intervalTicks>
           <warmupTicks>120</warmupTicks>
         </royalAid>
         <modExtensions>
           <li Class="ShieldbreakerPermits.SP_RoyalAid">
-            <!--<empCount>1</empCount>-->
+            <shellType>
+              <EMP>1</EMP>
+            </shellType>
+          </li>
+        </modExtensions>
+      </RoyalTitlePermitDef>
+
+      <RoyalTitlePermitDef>
+        <defName>SP_CallShieldbreakerSalvo</defName>
+        <label>call shieldbreaker salvo</label>
+        <description>Call a salvo of aerodrone strikes, with a preceding anti-shield strike, around a target position.</description>
+        <workerClass>ShieldbreakerPermits.SP_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
+        <minTitle>Knight</minTitle>
+        <faction>Empire</faction>
+        <permitPointCost>1</permitPointCost>
+        <prerequisite>SP_CallShieldbreakerStrike</prerequisite>
+        <cooldownDays>45</cooldownDays>
+        <uiPosition>(3,5)</uiPosition>
+        <royalAid>
+          <favorCost>9</favorCost>
+          <targetingRange>44.9</targetingRange>
+          <radius>7.9</radius>
+          <explosionRadiusRange>5.9</explosionRadiusRange>
+          <intervalTicks>60</intervalTicks>
+          <warmupTicks>120</warmupTicks>
+        </royalAid>
+        <modExtensions>
+          <li Class="ShieldbreakerPermits.SP_RoyalAid">
+            <shellType>
+              <EMP>1</EMP>
+              <Bomb>6</Bomb>
+            </shellType>
+          </li>
+        </modExtensions>
+      </RoyalTitlePermitDef>
+
+      <RoyalTitlePermitDef>
+        <defName>SP_CallSmokescreenStrike</defName>
+        <label>call smokescreen strike</label>
+        <description>Call a single-impact smoke-screen aerodrone strike at a target position.</description>
+        <workerClass>ShieldbreakerPermits.SP_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
+        <minTitle>Knight</minTitle>
+        <faction>Empire</faction>
+        <permitPointCost>1</permitPointCost>
+        <cooldownDays>45</cooldownDays>
+        <uiPosition>(2,6)</uiPosition>
+        <royalAid>
+          <favorCost>7</favorCost>
+          <targetingRange>44.9</targetingRange>
+          <radius>2.9</radius>
+          <explosionRadiusRange>7.9</explosionRadiusRange>
+          <intervalTicks>60</intervalTicks>
+          <warmupTicks>120</warmupTicks>
+        </royalAid>
+        <modExtensions>
+          <li Class="ShieldbreakerPermits.SP_RoyalAid">
+            <shellType>
+              <Smoke>1</Smoke>
+            </shellType>
+          </li>
+        </modExtensions>
+      </RoyalTitlePermitDef>
+
+      <RoyalTitlePermitDef MayRequire="Ludeon.RimWorld.Biotech">
+        <defName>SP_CallToxgasStrike</defName>
+        <label>call toxgas strike</label>
+        <description>Call a single-impact toxgas aerodrone strike at a target position.</description>
+        <workerClass>ShieldbreakerPermits.SP_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
+        <minTitle>Knight</minTitle>
+        <faction>Empire</faction>
+        <permitPointCost>1</permitPointCost>
+        <cooldownDays>45</cooldownDays>
+        <uiPosition>(3,6)</uiPosition>
+        <royalAid>
+          <favorCost>7</favorCost>
+          <targetingRange>44.9</targetingRange>
+          <radius>2.9</radius>
+          <explosionRadiusRange>7.9</explosionRadiusRange>
+          <intervalTicks>60</intervalTicks>
+          <warmupTicks>120</warmupTicks>
+        </royalAid>
+        <modExtensions>
+          <li Class="ShieldbreakerPermits.SP_RoyalAid">
+            <shellType>
+              <ToxGas>1</ToxGas>
+            </shellType>
+          </li>
+        </modExtensions>
+      </RoyalTitlePermitDef>
+
+      <RoyalTitlePermitDef>
+        <defName>SP_CallFirefoamStrike</defName>
+        <label>call firefoam strike</label>
+        <description>Call a single-impact firefoam aerodrone strike at a target position.</description>
+        <workerClass>ShieldbreakerPermits.SP_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
+        <minTitle>Knight</minTitle>
+        <faction>Empire</faction>
+        <permitPointCost>1</permitPointCost>
+        <cooldownDays>45</cooldownDays>
+        <uiPosition>(2,8)</uiPosition>
+        <royalAid>
+          <favorCost>7</favorCost>
+          <targetingRange>44.9</targetingRange>
+          <radius>2.9</radius>
+          <explosionRadiusRange>7.9</explosionRadiusRange>
+          <intervalTicks>60</intervalTicks>
+          <warmupTicks>120</warmupTicks>
+        </royalAid>
+        <modExtensions>
+          <li Class="ShieldbreakerPermits.SP_RoyalAid">
+            <shellType>
+              <Extinguish>1</Extinguish>
+            </shellType>
+          </li>
+        </modExtensions>
+      </RoyalTitlePermitDef>
+
+      <RoyalTitlePermitDef>
+        <defName>SP_CallCrisisStrike</defName>
+        <label>call crisis strike</label>
+        <description>Call a salvo of firefoam aerodrone strikes at a target position.</description>
+        <workerClass>ShieldbreakerPermits.SP_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
+        <minTitle>Knight</minTitle>
+        <faction>Empire</faction>
+        <permitPointCost>1</permitPointCost>
+        <prerequisite>SP_CallFirefoamStrike</prerequisite>
+        <cooldownDays>45</cooldownDays>
+        <uiPosition>(3,8)</uiPosition>
+        <royalAid>
+          <favorCost>7</favorCost>
+          <targetingRange>60.9</targetingRange>
+          <radius>15.9</radius>
+          <explosionRadiusRange>7.9</explosionRadiusRange>
+          <intervalTicks>60</intervalTicks>
+          <warmupTicks>120</warmupTicks>
+        </royalAid>
+        <modExtensions>
+          <li Class="ShieldbreakerPermits.SP_RoyalAid">
+            <shellType>
+              <Extinguish>15</Extinguish>
+            </shellType>
+          </li>
+        </modExtensions>
+      </RoyalTitlePermitDef>
+
+      <RoyalTitlePermitDef>
+        <defName>SP_CallCatastropheStrike</defName>
+        <label>call catastrophe strike</label>
+        <description>Call a aerodrone firefoam carpet bombardment at a target position.</description>
+        <workerClass>ShieldbreakerPermits.SP_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
+        <minTitle>Knight</minTitle>
+        <faction>Empire</faction>
+        <permitPointCost>1</permitPointCost>
+        <prerequisite>SP_CallCrisisStrike</prerequisite>
+        <cooldownDays>45</cooldownDays>
+        <uiPosition>(4,8)</uiPosition>
+        <royalAid>
+          <favorCost>7</favorCost>
+          <targetingRange>100.9</targetingRange>
+          <radius>50.9</radius>
+          <explosionRadiusRange>7.9</explosionRadiusRange>
+          <intervalTicks>60</intervalTicks>
+          <warmupTicks>120</warmupTicks>
+        </royalAid>
+        <modExtensions>
+          <li Class="ShieldbreakerPermits.SP_RoyalAid">
+            <shellType>
+              <Extinguish>50</Extinguish>
+            </shellType>
+          </li>
+        </modExtensions>
+      </RoyalTitlePermitDef>
+
+      <RoyalTitlePermitDef>
+        <defName>SP_CallFireStrike</defName>
+        <label>call fire strike</label>
+        <description>Call a single-impact incendiary aerodrone strike at a target position.</description>
+        <workerClass>ShieldbreakerPermits.SP_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
+        <minTitle>Knight</minTitle>
+        <faction>Empire</faction>
+        <permitPointCost>1</permitPointCost>
+        <cooldownDays>45</cooldownDays>
+        <uiPosition>(2,7)</uiPosition>
+        <royalAid>
+          <favorCost>7</favorCost>
+          <targetingRange>44.9</targetingRange>
+          <radius>2.9</radius>
+          <explosionRadiusRange>7.9</explosionRadiusRange>
+          <intervalTicks>60</intervalTicks>
+          <warmupTicks>120</warmupTicks>
+        </royalAid>
+        <modExtensions>
+          <li Class="ShieldbreakerPermits.SP_RoyalAid">
             <shellType>
               <Flame>1</Flame>
-              <EMP>1</EMP>
-              
+            </shellType>
+          </li>
+        </modExtensions>
+      </RoyalTitlePermitDef>
+
+      <RoyalTitlePermitDef>
+        <defName>SP_CallInfernoStrike</defName>
+        <label>call inferno strike</label>
+        <description>Call a salvo of incendiary aerodrone strikes at a target position.</description>
+        <workerClass>ShieldbreakerPermits.SP_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
+        <minTitle>Knight</minTitle>
+        <faction>Empire</faction>
+        <permitPointCost>1</permitPointCost>
+        <prerequisite>SP_CallFireStrike</prerequisite>
+        <cooldownDays>45</cooldownDays>
+        <uiPosition>(3,7)</uiPosition>
+        <royalAid>
+          <favorCost>9</favorCost>
+          <targetingRange>60.9</targetingRange>
+          <radius>15.9</radius>
+          <explosionRadiusRange>7.9</explosionRadiusRange>
+          <intervalTicks>60</intervalTicks>
+          <warmupTicks>120</warmupTicks>
+        </royalAid>
+        <modExtensions>
+          <li Class="ShieldbreakerPermits.SP_RoyalAid">
+            <shellType>
+              <Flame>10</Flame>
             </shellType>
           </li>
         </modExtensions>
