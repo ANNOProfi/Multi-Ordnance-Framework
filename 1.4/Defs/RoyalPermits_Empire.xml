@@ -113,7 +113,7 @@
       <RoyalTitlePermitDef>
         <defName>SP_CallFirefoamStrike</defName>
         <label>call firefoam strike</label>
-        <description>Call a single-impact firefoam aerodrone strike at a target position.</description>
+        <description>Call a small salvo of firefoam aerodrone strikes at a target position.</description>
         <workerClass>ShieldbreakerPermits.SP_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
         <minTitle>Knight</minTitle>
         <faction>Empire</faction>
@@ -124,14 +124,14 @@
           <favorCost>7</favorCost>
           <targetingRange>44.9</targetingRange>
           <radius>2.9</radius>
-          <explosionRadiusRange>7.9</explosionRadiusRange>
+          <explosionRadiusRange>10.9</explosionRadiusRange>
           <intervalTicks>60</intervalTicks>
           <warmupTicks>120</warmupTicks>
         </royalAid>
         <modExtensions>
           <li Class="ShieldbreakerPermits.SP_RoyalAid">
             <shellType>
-              <Extinguish>1</Extinguish>
+              <Extinguish>3</Extinguish>
             </shellType>
           </li>
         </modExtensions>
@@ -140,7 +140,7 @@
       <RoyalTitlePermitDef>
         <defName>SP_CallCrisisStrike</defName>
         <label>call crisis strike</label>
-        <description>Call a salvo of firefoam aerodrone strikes at a target position.</description>
+        <description>Call a large salvo of firefoam aerodrone strikes at a target position.</description>
         <workerClass>ShieldbreakerPermits.SP_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
         <minTitle>Knight</minTitle>
         <faction>Empire</faction>
@@ -152,7 +152,7 @@
           <favorCost>7</favorCost>
           <targetingRange>60.9</targetingRange>
           <radius>15.9</radius>
-          <explosionRadiusRange>7.9</explosionRadiusRange>
+          <explosionRadiusRange>10.9</explosionRadiusRange>
           <intervalTicks>60</intervalTicks>
           <warmupTicks>120</warmupTicks>
         </royalAid>
@@ -168,7 +168,7 @@
       <RoyalTitlePermitDef>
         <defName>SP_CallCatastropheStrike</defName>
         <label>call catastrophe strike</label>
-        <description>Call a aerodrone firefoam carpet bombardment at a target position.</description>
+        <description>Call an aerodrone firefoam carpet bombardment at a target position.</description>
         <workerClass>ShieldbreakerPermits.SP_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
         <minTitle>Knight</minTitle>
         <faction>Empire</faction>
@@ -180,7 +180,7 @@
           <favorCost>7</favorCost>
           <targetingRange>100.9</targetingRange>
           <radius>50.9</radius>
-          <explosionRadiusRange>7.9</explosionRadiusRange>
+          <explosionRadiusRange>10.9</explosionRadiusRange>
           <intervalTicks>60</intervalTicks>
           <warmupTicks>120</warmupTicks>
         </royalAid>
