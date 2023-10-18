@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+    <Operation Class="PatchOperationSequence">
+        <operations>
+            <li Class="PatchOperationReplace" MayRequire="OskarPotocki.VFE.Empire">
+                <xpath>Defs/RoyalTitlePermitDef[defName="SP_CallShieldbreakerStrike"]/uiPosition</xpath>
+                <value>
+                    <uiPosition>(2,4)</uiPosition>
+                </value>
+            </li>
+            <li Class="PatchOperationReplace" MayRequire="OskarPotocki.VFE.Empire">
+                <xpath>Defs/RoyalTitlePermitDef[defName="SP_CallShieldbreakerSalvo"]/uiPosition</xpath>
+                <value>
+                    <uiPosition>(3,4)</uiPosition>
+                </value>
+            </li>
+            <li Class="PatchOperationReplace" MayRequire="OskarPotocki.VFE.Empire">
+                <xpath>Defs/RoyalTitlePermitDef[defName="SP_CallSmokescreenStrike"]/uiPosition</xpath>
+                <value>
+                    <uiPosition>(3,6)</uiPosition>
+                </value>
+            </li>
+            <li Class="PatchOperationReplace" MayRequire="OskarPotocki.VFE.Empire">
+                <xpath>Defs/RoyalTitlePermitDef[defName="SP_CallToxgasStrike"]/uiPosition</xpath>
+                <value>
+                    <uiPosition>(4,6)</uiPosition>
+                </value>
+            </li>
+            <li Class="PatchOperationReplace" MayRequire="OskarPotocki.VFE.Empire">
+                <xpath>Defs/RoyalTitlePermitDef[defName="SP_CallFirefoamStrike"]/uiPosition</xpath>
+                <value>
+                    <uiPosition>(3,8)</uiPosition>
+                </value>
+            </li>
+            <li Class="PatchOperationReplace" MayRequire="OskarPotocki.VFE.Empire">
+                <xpath>Defs/RoyalTitlePermitDef[defName="SP_CallCrisisStrike"]/uiPosition</xpath>
+                <value>
+                    <uiPosition>(4,8)</uiPosition>
+                </value>
+            </li>
+            <li Class="PatchOperationReplace" MayRequire="OskarPotocki.VFE.Empire">
+                <xpath>Defs/RoyalTitlePermitDef[defName="SP_CallCatastropheStrike"]/uiPosition</xpath>
+                <value>
+                    <uiPosition>(5,8)</uiPosition>
+                </value>
+            </li>
+            <li Class="PatchOperationReplace" MayRequire="OskarPotocki.VFE.Empire">
+                <xpath>Defs/RoyalTitlePermitDef[defName="SP_CallFireStrike"]/uiPosition</xpath>
+                <value>
+                    <uiPosition>(4,4)</uiPosition>
+                </value>
+            </li>
+            <li Class="PatchOperationReplace" MayRequire="OskarPotocki.VFE.Empire">
+                <xpath>Defs/RoyalTitlePermitDef[defName="SP_CallInfernoStrike"]/uiPosition</xpath>
+                <value>
+                    <uiPosition>(5,4)</uiPosition>
+                </value>
+            </li>
+        </operations>
+    </Operation>
+</Patch>
