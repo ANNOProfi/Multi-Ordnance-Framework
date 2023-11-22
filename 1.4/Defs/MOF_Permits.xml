@@ -21,7 +21,7 @@
             </explosionGases>
           </li>
         </modExtensions>
-      </RoyalTitlePermitDef>-->
+      </RoyalTitlePermitDef>
 
       <RoyalTitlePermitDef ParentName="MOF_DamageBase">
         <defName>MOF_CallShieldbreakerStrike</defName>

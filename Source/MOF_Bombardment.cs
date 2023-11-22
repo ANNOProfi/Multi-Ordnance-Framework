@@ -24,9 +24,6 @@ namespace MultiOrdnanceFramework
 
         public override void StartStrike()
 		{
-			Log.Message("shellType: "+this.shellType.ToString());
-			Log.Message("explosionThings: "+this.explosionThings.ToString());
-			Log.Message("explosionGases: "+this.explosionGases.ToString());
 			for(int i = 0; i<shellType.Count; i++)
 			{
 				this.volleyCount += shellType[i].volleySize;
