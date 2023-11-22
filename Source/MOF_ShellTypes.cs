@@ -2,9 +2,9 @@ using System;
 using System.Xml;
 using Verse;
 
-namespace ShieldbreakerPermits
+namespace MultiOrdnanceFramework
 {
-    public class SP_ShellTypes
+    public class MOF_ShellTypes
     {
         public DamageDef damage;
 

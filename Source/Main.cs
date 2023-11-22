@@ -1,13 +1,13 @@
 ﻿using Verse;
 
-namespace ShieldbreakerPermits
+namespace MultiOrdnanceFramework
 {
     [StaticConstructorOnStartup]
     public static class Start
     {
         static Start()
         {
-            Log.Message("Shieldbreaker Permits loaded successfully!");
+            Log.Message("Multi Ordnance Framework loaded successfully!");
         }
     }
 

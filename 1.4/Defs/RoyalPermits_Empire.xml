@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-      <RoyalTitlePermitDef Abstract="True" Name="SP_DamageBase">
+      <RoyalTitlePermitDef Abstract="True" Name="MOF_DamageBase">
         <modExtensions>
-          <li Class="ShieldbreakerPermits.SP_RoyalOrdinance">
+          <li Class="MultiOrdnanceFramework.MOF_RoyalOrdnance">
             <explosionThings>
               <li>
                 <damage>Extinguish</damage>
@@ -23,11 +23,11 @@
         </modExtensions>
       </RoyalTitlePermitDef>-->
 
-      <RoyalTitlePermitDef ParentName="SP_DamageBase">
-        <defName>SP_CallShieldbreakerStrike</defName>
+      <RoyalTitlePermitDef ParentName="MOF_DamageBase">
+        <defName>MOF_CallShieldbreakerStrike</defName>
         <label>call shieldbreaker strike</label>
         <description>Call a single-impact anti-shield aerodrone strike at a target position.</description>
-        <workerClass>ShieldbreakerPermits.SP_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
+        <workerClass>MultiOrdnanceFramework.MOF_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
         <minTitle>Knight</minTitle>
         <faction>Empire</faction>
         <permitPointCost>1</permitPointCost>
@@ -42,7 +42,7 @@
           <warmupTicks>120</warmupTicks>
         </royalAid>
         <modExtensions>
-          <li Class="ShieldbreakerPermits.SP_RoyalAid">
+          <li Class="MultiOrdnanceFramework.MOF_RoyalAid">
             <shellType>
               <EMP>1</EMP>
             </shellType>
@@ -50,15 +50,15 @@
         </modExtensions>
       </RoyalTitlePermitDef>
 
-      <RoyalTitlePermitDef ParentName="SP_DamageBase">
-        <defName>SP_CallShieldbreakerSalvo</defName>
+      <RoyalTitlePermitDef ParentName="MOF_DamageBase">
+        <defName>MOF_CallShieldbreakerSalvo</defName>
         <label>call shieldbreaker salvo</label>
         <description>Call a salvo of aerodrone strikes, with a preceding anti-shield strike, around a target position.</description>
-        <workerClass>ShieldbreakerPermits.SP_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
+        <workerClass>MultiOrdnanceFramework.MOF_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
         <minTitle>Knight</minTitle>
         <faction>Empire</faction>
         <permitPointCost>1</permitPointCost>
-        <prerequisite>SP_CallShieldbreakerStrike</prerequisite>
+        <prerequisite>MOF_CallShieldbreakerStrike</prerequisite>
         <cooldownDays>45</cooldownDays>
         <uiPosition>(3,5)</uiPosition>
         <royalAid>
@@ -70,7 +70,7 @@
           <warmupTicks>120</warmupTicks>
         </royalAid>
         <modExtensions>
-          <li Class="ShieldbreakerPermits.SP_RoyalAid">
+          <li Class="MultiOrdnanceFramework.MOF_RoyalAid">
             <shellType>
               <EMP>1</EMP>
               <Bomb>6</Bomb>
@@ -79,11 +79,11 @@
         </modExtensions>
       </RoyalTitlePermitDef>
 
-      <RoyalTitlePermitDef ParentName="SP_DamageBase">
-        <defName>SP_CallSmokescreenStrike</defName>
+      <RoyalTitlePermitDef ParentName="MOF_DamageBase">
+        <defName>MOF_CallSmokescreenStrike</defName>
         <label>call smokescreen strike</label>
         <description>Call a single-impact smoke-screen aerodrone strike at a target position.</description>
-        <workerClass>ShieldbreakerPermits.SP_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
+        <workerClass>MultiOrdnanceFramework.MOF_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
         <minTitle>Knight</minTitle>
         <faction>Empire</faction>
         <permitPointCost>1</permitPointCost>
@@ -98,7 +98,7 @@
           <warmupTicks>120</warmupTicks>
         </royalAid>
         <modExtensions>
-          <li Class="ShieldbreakerPermits.SP_RoyalAid">
+          <li Class="MultiOrdnanceFramework.MOF_RoyalAid">
             <shellType>
               <Smoke>1</Smoke>
             </shellType>
@@ -106,11 +106,11 @@
         </modExtensions>
       </RoyalTitlePermitDef>
 
-      <RoyalTitlePermitDef MayRequire="Ludeon.RimWorld.Biotech" ParentName="SP_DamageBase">
-        <defName>SP_CallToxgasStrike</defName>
+      <RoyalTitlePermitDef MayRequire="Ludeon.RimWorld.Biotech" ParentName="MOF_DamageBase">
+        <defName>MOF_CallToxgasStrike</defName>
         <label>call toxgas strike</label>
         <description>Call a single-impact toxgas aerodrone strike at a target position.</description>
-        <workerClass>ShieldbreakerPermits.SP_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
+        <workerClass>MultiOrdnanceFramework.MOF_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
         <minTitle>Knight</minTitle>
         <faction>Empire</faction>
         <permitPointCost>1</permitPointCost>
@@ -125,7 +125,7 @@
           <warmupTicks>120</warmupTicks>
         </royalAid>
         <modExtensions>
-          <li Class="ShieldbreakerPermits.SP_RoyalAid">
+          <li Class="MultiOrdnanceFramework.MOF_RoyalAid">
             <shellType>
               <ToxGas>1</ToxGas>
             </shellType>
@@ -133,11 +133,11 @@
         </modExtensions>
       </RoyalTitlePermitDef>
 
-      <RoyalTitlePermitDef ParentName="SP_DamageBase">
-        <defName>SP_CallFirefoamStrike</defName>
+      <RoyalTitlePermitDef ParentName="MOF_DamageBase">
+        <defName>MOF_CallFirefoamStrike</defName>
         <label>call firefoam strike</label>
         <description>Call a small salvo of firefoam aerodrone strikes at a target position.</description>
-        <workerClass>ShieldbreakerPermits.SP_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
+        <workerClass>MultiOrdnanceFramework.MOF_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
         <minTitle>Knight</minTitle>
         <faction>Empire</faction>
         <permitPointCost>1</permitPointCost>
@@ -152,7 +152,7 @@
           <warmupTicks>120</warmupTicks>
         </royalAid>
         <modExtensions>
-          <li Class="ShieldbreakerPermits.SP_RoyalAid">
+          <li Class="MultiOrdnanceFramework.MOF_RoyalAid">
             <shellType>
               <Extinguish>3</Extinguish>
             </shellType>
@@ -160,15 +160,15 @@
         </modExtensions>
       </RoyalTitlePermitDef>
 
-      <RoyalTitlePermitDef ParentName="SP_DamageBase">
-        <defName>SP_CallCrisisStrike</defName>
+      <RoyalTitlePermitDef ParentName="MOF_DamageBase">
+        <defName>MOF_CallCrisisStrike</defName>
         <label>call crisis strike</label>
         <description>Call a large salvo of firefoam aerodrone strikes at a target position.</description>
-        <workerClass>ShieldbreakerPermits.SP_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
+        <workerClass>MultiOrdnanceFramework.MOF_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
         <minTitle>Knight</minTitle>
         <faction>Empire</faction>
         <permitPointCost>1</permitPointCost>
-        <prerequisite>SP_CallFirefoamStrike</prerequisite>
+        <prerequisite>MOF_CallFirefoamStrike</prerequisite>
         <cooldownDays>45</cooldownDays>
         <uiPosition>(3,8)</uiPosition>
         <royalAid>
@@ -180,7 +180,7 @@
           <warmupTicks>120</warmupTicks>
         </royalAid>
         <modExtensions>
-          <li Class="ShieldbreakerPermits.SP_RoyalAid">
+          <li Class="MultiOrdnanceFramework.MOF_RoyalAid">
             <shellType>
               <Extinguish>15</Extinguish>
             </shellType>
@@ -188,15 +188,15 @@
         </modExtensions>
       </RoyalTitlePermitDef>
 
-      <RoyalTitlePermitDef ParentName="SP_DamageBase">
-        <defName>SP_CallCatastropheStrike</defName>
+      <RoyalTitlePermitDef ParentName="MOF_DamageBase">
+        <defName>MOF_CallCatastropheStrike</defName>
         <label>call catastrophe strike</label>
         <description>Call an aerodrone firefoam carpet bombardment at a target position.</description>
-        <workerClass>ShieldbreakerPermits.SP_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
+        <workerClass>MultiOrdnanceFramework.MOF_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
         <minTitle>Knight</minTitle>
         <faction>Empire</faction>
         <permitPointCost>1</permitPointCost>
-        <prerequisite>SP_CallCrisisStrike</prerequisite>
+        <prerequisite>MOF_CallCrisisStrike</prerequisite>
         <cooldownDays>45</cooldownDays>
         <uiPosition>(4,8)</uiPosition>
         <royalAid>
@@ -208,7 +208,7 @@
           <warmupTicks>120</warmupTicks>
         </royalAid>
         <modExtensions>
-          <li Class="ShieldbreakerPermits.SP_RoyalAid">
+          <li Class="MultiOrdnanceFramework.MOF_RoyalAid">
             <shellType>
               <Extinguish>50</Extinguish>
             </shellType>
@@ -216,11 +216,11 @@
         </modExtensions>
       </RoyalTitlePermitDef>
 
-      <RoyalTitlePermitDef ParentName="SP_DamageBase">
-        <defName>SP_CallFireStrike</defName>
+      <RoyalTitlePermitDef ParentName="MOF_DamageBase">
+        <defName>MOF_CallFireStrike</defName>
         <label>call fire strike</label>
         <description>Call a single-impact incendiary aerodrone strike at a target position.</description>
-        <workerClass>ShieldbreakerPermits.SP_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
+        <workerClass>MultiOrdnanceFramework.MOF_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
         <minTitle>Knight</minTitle>
         <faction>Empire</faction>
         <permitPointCost>1</permitPointCost>
@@ -235,7 +235,7 @@
           <warmupTicks>120</warmupTicks>
         </royalAid>
         <modExtensions>
-          <li Class="ShieldbreakerPermits.SP_RoyalAid">
+          <li Class="MultiOrdnanceFramework.MOF_RoyalAid">
             <shellType>
               <Flame>1</Flame>
             </shellType>
@@ -243,15 +243,15 @@
         </modExtensions>
       </RoyalTitlePermitDef>
 
-      <RoyalTitlePermitDef ParentName="SP_DamageBase">
-        <defName>SP_CallInfernoStrike</defName>
+      <RoyalTitlePermitDef ParentName="MOF_DamageBase">
+        <defName>MOF_CallInfernoStrike</defName>
         <label>call inferno strike</label>
         <description>Call a salvo of incendiary aerodrone strikes at a target position.</description>
-        <workerClass>ShieldbreakerPermits.SP_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
+        <workerClass>MultiOrdnanceFramework.MOF_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike</workerClass>
         <minTitle>Knight</minTitle>
         <faction>Empire</faction>
         <permitPointCost>1</permitPointCost>
-        <prerequisite>SP_CallFireStrike</prerequisite>
+        <prerequisite>MOF_CallFireStrike</prerequisite>
         <cooldownDays>45</cooldownDays>
         <uiPosition>(3,7)</uiPosition>
         <royalAid>
@@ -263,7 +263,7 @@
           <warmupTicks>120</warmupTicks>
         </royalAid>
         <modExtensions>
-          <li Class="ShieldbreakerPermits.SP_RoyalAid">
+          <li Class="MultiOrdnanceFramework.MOF_RoyalAid">
             <shellType>
               <Flame>10</Flame>
             </shellType>

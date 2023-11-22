@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<packageId>ANNOProfi.ShieldbreakerPermits</packageId>
-	<name>Shieldbreaker Permits</name>
+	<packageId>ANNOProfi.MultiOrdnanceFramework</packageId>
+	<name>Multi Ordnance Framework</name>
 	<author>ANNOProfi</author>
 	<supportedVersions>
 		<li>1.4</li>
 	</supportedVersions>
 
 	<modDependencies>
-		<!-- <li>
-			<packageId>brrainz.harmony</packageId>
-			<displayName>Harmony</displayName>
-			<downloadUrl>https://steamcommunity.com/workshop/filedetails/?id=2009463077</downloadUrl>
-			<steamWorkshopUrl>https://steamcommunity.com/workshop/filedetails/?id=2009463077</steamWorkshopUrl>
-		</li> -->
 		<packageID>Ludeon.RimWorld.Royalty</packageID>
 		<displayName>Royalty</displayName>
 	</modDependencies>

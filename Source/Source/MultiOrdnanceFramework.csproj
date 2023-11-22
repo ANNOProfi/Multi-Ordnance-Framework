@@ -5,8 +5,8 @@
 		<PlatformTarget>x64</PlatformTarget>
 
 		<!-- Modify [RootNamespace], [AssemblyName], [OutputPath], [VersionPrefix] -->
-		<RootNamespace>ShieldbreakerPermits</RootNamespace>
-		<AssemblyName>ShieldbreakerPermits</AssemblyName>
+		<RootNamespace>MultiOrdnanceFramework</RootNamespace>
+		<AssemblyName>MultiOrdnanceFramework</AssemblyName>
 		<OutputPath>../../1.4/Assemblies</OutputPath>
 		<VersionPrefix>1.0.0.0</VersionPrefix>
 
@@ -26,16 +26,6 @@
 	 	<Reference Include="../../../../RimWorldWin64_Data/Managed/*.dll" Condition="Exists('../../../../RimWorldWin64_Data')">
 			<Private>False</Private>
 		</Reference>
-
-		<!--<Reference Include="AthenaFramework">
-			<HintPath>..\..\..\..\..\..\workshop\content\294100\2903359518\1.4\Assemblies\AthenaFramework.dll</HintPath>
-			<Private>False</Private>
-		</Reference>-->
-
-		<!-- Harmony -->
-		<!--  <Reference Include="..\..\..\..\..\..\workshop\content\294100\2009463077\Current\Assemblies\*.dll">
-			<Private>False</Private>
-		</Reference>-->
 
 		<!-- Other Files -->
 		<None Include="../../1.4/Defs/**" LinkBase="Defs" />

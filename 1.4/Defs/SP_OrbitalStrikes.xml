@@ -3,7 +3,7 @@
     <ThingDef ParentName="OrbitalStrikeBase">
         <defName>ShieldbreakerBombardment</defName>
         <label>shieldbreaker bombardment</label>
-        <thingClass>ShieldbreakerPermits.ShieldbreakerBombardment</thingClass>
+        <thingClass>MultiOrdnanceFramework.MOFBombardment</thingClass>
         <comps>
             <li Class="CompProperties_OrbitalBeam">
             <width>0.2</width>

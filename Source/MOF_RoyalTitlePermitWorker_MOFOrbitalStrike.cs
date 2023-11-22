@@ -6,9 +6,9 @@ using Verse;
 using Verse.Sound;
 
 
-namespace ShieldbreakerPermits
+namespace MultiOrdnanceFramework
 {
-    public class SP_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike : RoyalTitlePermitWorker_Targeted
+    public class MOF_RoyalTitlePermitWorker_ShieldbreakerOrbitalStrike : RoyalTitlePermitWorker_Targeted
     {
         private Faction faction;
 
@@ -78,15 +78,15 @@ namespace ShieldbreakerPermits
 
         private void CallBombardment(IntVec3 targetCell)
 		{
-			ShieldbreakerBombardment bombardment = (ShieldbreakerBombardment)GenSpawn.Spawn(SP_DefOf.ShieldbreakerBombardment, targetCell, this.map, WipeMode.Vanish);
+			MOF_Bombardment bombardment = (MOF_Bombardment)GenSpawn.Spawn(MOF_DefOf.MOFBombardment, targetCell, this.map, WipeMode.Vanish);
 			bombardment.impactAreaRadius = this.def.royalAid.radius;
 			bombardment.explosionRadiusRange = this.def.royalAid.explosionRadiusRange;
 			bombardment.bombIntervalTicks = this.def.royalAid.intervalTicks;
 			bombardment.randomFireRadius = 1;
 			bombardment.explosionCount = -1;
-			bombardment.shellType = this.def.GetModExtension<SP_RoyalAid>().shellType;
-			bombardment.explosionThings = this.def.GetModExtension<SP_RoyalOrdinance>().explosionThings;
-			bombardment.explosionGases = this.def.GetModExtension<SP_RoyalOrdinance>().explosionGases;
+			bombardment.shellType = this.def.GetModExtension<MOF_RoyalAid>().shellType;
+			bombardment.explosionThings = this.def.GetModExtension<MOF_RoyalOrdnance>().explosionThings;
+			bombardment.explosionGases = this.def.GetModExtension<MOF_RoyalOrdnance>().explosionGases;
 			bombardment.warmupTicks = this.def.royalAid.warmupTicks;
 			bombardment.instigator = this.caller;
 			SoundDefOf.OrbitalStrike_Ordered.PlayOneShotOnCamera(null);

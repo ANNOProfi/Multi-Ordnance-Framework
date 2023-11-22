@@ -7,10 +7,10 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace ShieldbreakerPermits
+namespace MultiOrdnanceFramework
 {
     [StaticConstructorOnStartup]
-    public class ShieldbreakerBombardment : Bombardment
+    public class MOF_Bombardment : Bombardment
     {
 		public override void SpawnSetup(Map map, bool respawningAfterReload)
 		{
@@ -37,11 +37,11 @@ namespace ShieldbreakerPermits
 			base.StartStrike();
 		}
 
-		public void ShellCheck(List<SP_ShellTypes> shells, List<SP_ExplosionThings> things, List<SP_ExplosionGases> gases)
+		public void ShellCheck(List<MOF_ShellTypes> shells, List<MOF_ExplosionThings> things, List<MOF_ExplosionGases> gases)
 		{
-			foreach(SP_ShellTypes shell in shells)
+			foreach(MOF_ShellTypes shell in shells)
 			{
-				foreach(SP_ExplosionThings thing in things)
+				foreach(MOF_ExplosionThings thing in things)
 				{
 					if(thing.damage == shell.damage)
 					{
@@ -49,7 +49,7 @@ namespace ShieldbreakerPermits
 					}
 				}
 
-				foreach(SP_ExplosionGases gas in gases)
+				foreach(MOF_ExplosionGases gas in gases)
 				{
 					if(gas.damage == shell.damage)
 					{
@@ -172,13 +172,13 @@ namespace ShieldbreakerPermits
 		public override void Draw()
 		{
 			base.Draw();
-			if (this.projectiles.NullOrEmpty<ShieldbreakerBombardment.BombardmentProjectile>())
+			if (this.projectiles.NullOrEmpty<MOF_Bombardment.BombardmentProjectile>())
 			{
 				return;
 			}
 			for (int i = 0; i < this.projectiles.Count; i++)
 			{
-				this.projectiles[i].Draw(ShieldbreakerBombardment.ProjectileMaterial);
+				this.projectiles[i].Draw(MOF_Bombardment.ProjectileMaterial);
 			}
 		}
 
@@ -213,9 +213,9 @@ namespace ShieldbreakerPermits
 			Scribe_Values.Look<int>(ref this.shotsFired, "shotsFired", 0, false);
 			Scribe_Values.Look<int>(ref this.volleysFired, "volleysFired", 0 , false);
 			Scribe_Values.Look<int>(ref this.volleyCount, "volleyCount", 0 , false);
-			Scribe_Collections.Look<SP_ShellTypes>(ref this.shellType, "shellType", LookMode.Deep, Array.Empty<object>());
-			Scribe_Collections.Look<SP_ExplosionThings>(ref this.explosionThings, "explosionThings", LookMode.Deep, Array.Empty<object>());
-			Scribe_Collections.Look<SP_ExplosionGases>(ref this.explosionGases, "explosionGases", LookMode.Deep, Array.Empty<object>());
+			Scribe_Collections.Look<MOF_ShellTypes>(ref this.shellType, "shellType", LookMode.Deep, Array.Empty<object>());
+			Scribe_Collections.Look<MOF_ExplosionThings>(ref this.explosionThings, "explosionThings", LookMode.Deep, Array.Empty<object>());
+			Scribe_Collections.Look<MOF_ExplosionGases>(ref this.explosionGases, "explosionGases", LookMode.Deep, Array.Empty<object>());
 			if (Scribe.mode == LoadSaveMode.PostLoadInit)
 			{
 				if (!this.nextExplosionCell.IsValid)
@@ -224,11 +224,11 @@ namespace ShieldbreakerPermits
 				}
 				if(this.shellType == null)
 				{
-					this.shellType = new List<SP_ShellTypes>();
+					this.shellType = new List<MOF_ShellTypes>();
 				}
-				this.explosionThings ??= new List<SP_ExplosionThings>();
+				this.explosionThings ??= new List<MOF_ExplosionThings>();
 
-				this.explosionGases ??= new List<SP_ExplosionGases>();
+				this.explosionGases ??= new List<MOF_ExplosionGases>();
 			}
 			
 		}
@@ -237,11 +237,11 @@ namespace ShieldbreakerPermits
 
 		private int volleysFired = 0;
 
-		public List<SP_ShellTypes> shellType = new List<SP_ShellTypes>();
+		public List<MOF_ShellTypes> shellType = new List<MOF_ShellTypes>();
 
-		public List<SP_ExplosionThings> explosionThings;
+		public List<MOF_ExplosionThings> explosionThings;
 
-		public List<SP_ExplosionGases> explosionGases;
+		public List<MOF_ExplosionGases> explosionGases;
 
 		private int volleyCount = 0;
 
