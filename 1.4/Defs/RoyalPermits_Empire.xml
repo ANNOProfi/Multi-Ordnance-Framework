@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-      <RoyalTitlePermitDef>
+      <RoyalTitlePermitDef Abstract="True" Name="SP_DamageBase">
+        <modExtensions>
+          <li Class="ShieldbreakerPermits.SP_RoyalOrdinance">
+            <explosionThings>
+              <li>
+                <damage>Extinguish</damage>
+                <explosionThing>Filth_FireFoam</explosionThing>
+              </li>
+            </explosionThings>
+            <explosionGases>
+              <li>
+                <damage>Smoke</damage>
+                <explosionGas>BlindSmoke</explosionGas>
+              </li>
+              <li MayRequire="Ludon.RimWorld.Biotech">
+                <damage>ToxGas</damage>
+                <explosionGas>ToxGas</explosionGas>
+              </li>
+            </explosionGases>
+          </li>
+        </modExtensions>
+      </RoyalTitlePermitDef>-->
+
+      <RoyalTitlePermitDef ParentName="SP_DamageBase">
         <defName>SP_CallShieldbreakerStrike</defName>
         <label>call shieldbreaker strike</label>
         <description>Call a single-impact anti-shield aerodrone strike at a target position.</description>
@@ -27,7 +50,7 @@
         </modExtensions>
       </RoyalTitlePermitDef>
 
-      <RoyalTitlePermitDef>
+      <RoyalTitlePermitDef ParentName="SP_DamageBase">
         <defName>SP_CallShieldbreakerSalvo</defName>
         <label>call shieldbreaker salvo</label>
         <description>Call a salvo of aerodrone strikes, with a preceding anti-shield strike, around a target position.</description>
@@ -56,7 +79,7 @@
         </modExtensions>
       </RoyalTitlePermitDef>
 
-      <RoyalTitlePermitDef>
+      <RoyalTitlePermitDef ParentName="SP_DamageBase">
         <defName>SP_CallSmokescreenStrike</defName>
         <label>call smokescreen strike</label>
         <description>Call a single-impact smoke-screen aerodrone strike at a target position.</description>
@@ -83,7 +106,7 @@
         </modExtensions>
       </RoyalTitlePermitDef>
 
-      <RoyalTitlePermitDef MayRequire="Ludeon.RimWorld.Biotech">
+      <RoyalTitlePermitDef MayRequire="Ludeon.RimWorld.Biotech" ParentName="SP_DamageBase">
         <defName>SP_CallToxgasStrike</defName>
         <label>call toxgas strike</label>
         <description>Call a single-impact toxgas aerodrone strike at a target position.</description>
@@ -110,7 +133,7 @@
         </modExtensions>
       </RoyalTitlePermitDef>
 
-      <RoyalTitlePermitDef>
+      <RoyalTitlePermitDef ParentName="SP_DamageBase">
         <defName>SP_CallFirefoamStrike</defName>
         <label>call firefoam strike</label>
         <description>Call a small salvo of firefoam aerodrone strikes at a target position.</description>
@@ -137,7 +160,7 @@
         </modExtensions>
       </RoyalTitlePermitDef>
 
-      <RoyalTitlePermitDef>
+      <RoyalTitlePermitDef ParentName="SP_DamageBase">
         <defName>SP_CallCrisisStrike</defName>
         <label>call crisis strike</label>
         <description>Call a large salvo of firefoam aerodrone strikes at a target position.</description>
@@ -165,7 +188,7 @@
         </modExtensions>
       </RoyalTitlePermitDef>
 
-      <RoyalTitlePermitDef>
+      <RoyalTitlePermitDef ParentName="SP_DamageBase">
         <defName>SP_CallCatastropheStrike</defName>
         <label>call catastrophe strike</label>
         <description>Call an aerodrone firefoam carpet bombardment at a target position.</description>
@@ -193,7 +216,7 @@
         </modExtensions>
       </RoyalTitlePermitDef>
 
-      <RoyalTitlePermitDef>
+      <RoyalTitlePermitDef ParentName="SP_DamageBase">
         <defName>SP_CallFireStrike</defName>
         <label>call fire strike</label>
         <description>Call a single-impact incendiary aerodrone strike at a target position.</description>
@@ -220,7 +243,7 @@
         </modExtensions>
       </RoyalTitlePermitDef>
 
-      <RoyalTitlePermitDef>
+      <RoyalTitlePermitDef ParentName="SP_DamageBase">
         <defName>SP_CallInfernoStrike</defName>
         <label>call inferno strike</label>
         <description>Call a salvo of incendiary aerodrone strikes at a target position.</description>

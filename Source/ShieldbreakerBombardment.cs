@@ -15,6 +15,7 @@ namespace ShieldbreakerPermits
 		public override void SpawnSetup(Map map, bool respawningAfterReload)
 		{
 			base.SpawnSetup(map, respawningAfterReload);
+
 			if (!respawningAfterReload)
 			{
 				GetNextExplosionCell();
@@ -23,29 +24,38 @@ namespace ShieldbreakerPermits
 
         public override void StartStrike()
 		{
+			Log.Message("shellType: "+this.shellType.ToString());
+			Log.Message("explosionThings: "+this.explosionThings.ToString());
+			Log.Message("explosionGases: "+this.explosionGases.ToString());
 			for(int i = 0; i<shellType.Count; i++)
 			{
 				this.volleyCount += shellType[i].volleySize;
 			}
-			ShellCheck(shellType);
+			
+			ShellCheck(shellType, explosionThings, explosionGases);
 			base.explosionCount = this.volleyCount;
 			base.StartStrike();
 		}
 
-		public void ShellCheck(List<SP_ShellTypes> shells)
+		public void ShellCheck(List<SP_ShellTypes> shells, List<SP_ExplosionThings> things, List<SP_ExplosionGases> gases)
 		{
 			foreach(SP_ShellTypes shell in shells)
-			if(shell.damage == DamageDefOf.Extinguish)
 			{
-				shell.explosionThing = ThingDefOf.Filth_FireFoam;
-			}
-			else if(shell.damage == DamageDefOf.Smoke)
-			{
-				shell.explosionGas = GasType.BlindSmoke;
-			}
-			else if(shell.damage == DamageDefOf.ToxGas)
-			{
-				shell.explosionGas = GasType.ToxGas;
+				foreach(SP_ExplosionThings thing in things)
+				{
+					if(thing.damage == shell.damage)
+					{
+						shell.explosionThing = thing.explosionThing;
+					}
+				}
+
+				foreach(SP_ExplosionGases gas in gases)
+				{
+					if(gas.damage == shell.damage)
+					{
+						shell.explosionGas = gas.explosionGas;
+					}
+				}
 			}
 		}
 
@@ -204,6 +214,8 @@ namespace ShieldbreakerPermits
 			Scribe_Values.Look<int>(ref this.volleysFired, "volleysFired", 0 , false);
 			Scribe_Values.Look<int>(ref this.volleyCount, "volleyCount", 0 , false);
 			Scribe_Collections.Look<SP_ShellTypes>(ref this.shellType, "shellType", LookMode.Deep, Array.Empty<object>());
+			Scribe_Collections.Look<SP_ExplosionThings>(ref this.explosionThings, "explosionThings", LookMode.Deep, Array.Empty<object>());
+			Scribe_Collections.Look<SP_ExplosionGases>(ref this.explosionGases, "explosionGases", LookMode.Deep, Array.Empty<object>());
 			if (Scribe.mode == LoadSaveMode.PostLoadInit)
 			{
 				if (!this.nextExplosionCell.IsValid)
@@ -214,6 +226,9 @@ namespace ShieldbreakerPermits
 				{
 					this.shellType = new List<SP_ShellTypes>();
 				}
+				this.explosionThings ??= new List<SP_ExplosionThings>();
+
+				this.explosionGases ??= new List<SP_ExplosionGases>();
 			}
 			
 		}
@@ -224,6 +239,10 @@ namespace ShieldbreakerPermits
 
 		public List<SP_ShellTypes> shellType = new List<SP_ShellTypes>();
 
+		public List<SP_ExplosionThings> explosionThings;
+
+		public List<SP_ExplosionGases> explosionGases;
+
 		private int volleyCount = 0;
 
 		private int ticksToNextEffect;
@@ -231,7 +250,6 @@ namespace ShieldbreakerPermits
 		private IntVec3 nextExplosionCell = IntVec3.Invalid;
 
 		private List<BombardmentProjectile> projectiles = new List<BombardmentProjectile>();
-
 
 		private const int StartRandomFireEveryTicks = 20;
 

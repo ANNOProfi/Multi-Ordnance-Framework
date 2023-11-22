@@ -15,11 +15,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\ANNOP\\Steam\\steamapps\\common\\RimWorld\\Mods\\Shieldbreaker Permits\\Source\\Source\\ShieldbreakerPermits.csproj",
+      "projectUniqueName": "D:\\ANNOP\\Steam\\steamapps\\common\\RimWorld\\Mods\\Shieldbreaker Permits\\Source\\Source\\ShieldbreakerPermits.csproj",
       "projectName": "ShieldbreakerPermits",
-      "projectPath": "d:\\ANNOP\\Steam\\steamapps\\common\\RimWorld\\Mods\\Shieldbreaker Permits\\Source\\Source\\ShieldbreakerPermits.csproj",
+      "projectPath": "D:\\ANNOP\\Steam\\steamapps\\common\\RimWorld\\Mods\\Shieldbreaker Permits\\Source\\Source\\ShieldbreakerPermits.csproj",
       "packagesPath": "C:\\Users\\ANNOP\\.nuget\\packages\\",
-      "outputPath": "d:\\ANNOP\\Steam\\steamapps\\common\\RimWorld\\Mods\\Shieldbreaker Permits\\Source\\Source\\obj\\",
+      "outputPath": "D:\\ANNOP\\Steam\\steamapps\\common\\RimWorld\\Mods\\Shieldbreaker Permits\\Source\\Source\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Users\\ANNOP\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder",

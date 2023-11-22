@@ -85,6 +85,8 @@ namespace ShieldbreakerPermits
 			bombardment.randomFireRadius = 1;
 			bombardment.explosionCount = -1;
 			bombardment.shellType = this.def.GetModExtension<SP_RoyalAid>().shellType;
+			bombardment.explosionThings = this.def.GetModExtension<SP_RoyalOrdinance>().explosionThings;
+			bombardment.explosionGases = this.def.GetModExtension<SP_RoyalOrdinance>().explosionGases;
 			bombardment.warmupTicks = this.def.royalAid.warmupTicks;
 			bombardment.instigator = this.caller;
 			SoundDefOf.OrbitalStrike_Ordered.PlayOneShotOnCamera(null);
