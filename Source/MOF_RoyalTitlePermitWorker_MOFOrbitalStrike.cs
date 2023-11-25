@@ -78,7 +78,7 @@ namespace MultiOrdnanceFramework
 
         private void CallBombardment(IntVec3 targetCell)
 		{
-			MOF_Bombardment bombardment = (MOF_Bombardment)GenSpawn.Spawn(MOF_DefOf.MOFBombardment, targetCell, this.map, WipeMode.Vanish);
+			MOF_Bombardment bombardment = (MOF_Bombardment)GenSpawn.Spawn(MOF_DefOf.MOF_Bombardment, targetCell, this.map, WipeMode.Vanish);
 			bombardment.impactAreaRadius = this.def.royalAid.radius;
 			bombardment.explosionRadiusRange = this.def.royalAid.explosionRadiusRange;
 			bombardment.bombIntervalTicks = this.def.royalAid.intervalTicks;

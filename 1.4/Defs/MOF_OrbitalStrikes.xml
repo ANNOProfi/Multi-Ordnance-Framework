@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
     <ThingDef ParentName="OrbitalStrikeBase">
-        <defName>ShieldbreakerBombardment</defName>
-        <label>shieldbreaker bombardment</label>
-        <thingClass>MultiOrdnanceFramework.MOFBombardment</thingClass>
+        <defName>MOF_Bombardment</defName>
+        <label>multi ordnance bombardment</label>
+        <thingClass>MultiOrdnanceFramework.MOF_Bombardment</thingClass>
         <comps>
             <li Class="CompProperties_OrbitalBeam">
             <width>0.2</width>

@@ -12,6 +12,6 @@ namespace MultiOrdnanceFramework
         }
 
         [MayRequireRoyalty]
-        public static ThingDef MOFBombardment;
+        public static ThingDef MOF_Bombardment;
     }
 }
