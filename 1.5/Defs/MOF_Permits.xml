@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  <!--<RoyalTitlePermitDef Abstract="True" Name="MOF_DamageBase">
+  <RoyalTitlePermitDef Abstract="True" Name="MOF_DamageBase">
     <modExtensions>
       <li Class="MultiOrdnanceFramework.MOF_RoyalOrdnance">
         <explosionThings>
@@ -14,12 +14,12 @@
             <damage>Smoke</damage>
             <explosionGas>BlindSmoke</explosionGas>
           </li>
-          <li MayRequire="Ludon.RimWorld.Biotech">
-            <damage>ToxGas</damage>
-            <explosionGas>ToxGas</explosionGas>
+          <li>
+            <damage MayRequire="Ludeon.RimWorld.Biotech">ToxGas</damage>
+            <explosionGas MayRequire="Ludeon.RimWorld.Biotech">ToxGas</explosionGas>
           </li>
         </explosionGases>
       </li>
     </modExtensions>
-  </RoyalTitlePermitDef>-->
+  </RoyalTitlePermitDef>
 </Defs>

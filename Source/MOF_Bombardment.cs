@@ -145,7 +145,8 @@ namespace MultiOrdnanceFramework
 						if(damage == DamageDefOf.EMP)
 						{
 							bool absorbed = true;
-							list[i].TryGetComp<CompProjectileInterceptor>().PostPreApplyDamage(new DamageInfo(damage, damage.defaultDamage), out absorbed);
+							DamageInfo dInfo = new DamageInfo(damage, damage.defaultDamage);
+							list[i].TryGetComp<CompProjectileInterceptor>().PostPreApplyDamage(ref dInfo, out absorbed);
 						}
 						else
 						{
@@ -166,9 +167,9 @@ namespace MultiOrdnanceFramework
 			GenExplosion.DoExplosion(targetCell, map, randomInRange, damage, instigator, damAmount, armorPenetration, explosionSound, this.weaponDef, def, null, postExplosionThing, 1f, 3, postExplosionGas, false, null, 0f, 1, 0f, false, null, null, null, true, 1f, 0f, true, null, 1f);
 		}
 
-		public override void Draw()
+		protected override void DrawAt(Vector3 drawLoc, bool flip = false)
 		{
-			base.Draw();
+			base.DrawAt(drawLoc, flip);
 			if (this.projectiles.NullOrEmpty<MOF_Bombardment.BombardmentProjectile>())
 			{
 				return;
@@ -192,7 +193,7 @@ namespace MultiOrdnanceFramework
 					return;
 				}
 			}
-			FireUtility.TryStartFireIn(intVec, base.Map, Rand.Range(0.1f, 0.925f));
+			FireUtility.TryStartFireIn(intVec, base.Map, Rand.Range(0.1f, 0.925f), instigator);
 		}
 
         private void GetNextExplosionCell()
