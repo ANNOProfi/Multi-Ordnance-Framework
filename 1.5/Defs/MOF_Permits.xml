@@ -18,6 +18,10 @@
             <damage MayRequire="Ludeon.RimWorld.Biotech">ToxGas</damage>
             <explosionGas MayRequire="Ludeon.RimWorld.Biotech">ToxGas</explosionGas>
           </li>
+          <li>
+            <damage MayRequire="Ludeon.RimWorld.Anomaly">DeadlifeDust</damage>
+            <explosionGas MayRequire="Ludeon.RimWorld.Anomaly">DeadlifeDust</explosionGas>
+          </li>
         </explosionGases>
       </li>
     </modExtensions>
