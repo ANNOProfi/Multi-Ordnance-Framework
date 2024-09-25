@@ -28,8 +28,6 @@
 		</Reference>
 
 		<!-- Other Files -->
-		<None Include="../../1.4/Defs/**" LinkBase="Defs" />
-		<None Include="../../1.4/Assemblies/**" LinkBase="Assemblies" />
 		<None Include="../../1.5/Defs/**" LinkBase="Defs" />
 		<None Include="../../1.5/Assemblies/**" LinkBase="Assemblies" />
 		<None Include="../../Textures/**" LinkBase="Textures" />

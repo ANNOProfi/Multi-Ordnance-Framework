@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-    <ThingDef ParentName="OrbitalStrikeBase">
+    <!--<ThingDef ParentName="OrbitalStrikeBase">
         <defName>MOF_Bombardment</defName>
         <label>multi ordnance bombardment</label>
         <thingClass>MultiOrdnanceFramework.MOF_Bombardment</thingClass>
@@ -10,5 +10,5 @@
             <color>(255, 20, 20, 242)</color>
             </li>
         </comps>
-    </ThingDef>
+    </ThingDef>-->
 </Defs>
