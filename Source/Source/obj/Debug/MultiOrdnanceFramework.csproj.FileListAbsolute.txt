@@ -1,0 +1,8 @@
+D:\ANNOP\Steam\steamapps\common\RimWorld\Mods\Multi Ordnance Framework\1.4\Assemblies\MultiOrdnanceFramework.dll
+D:\ANNOP\Steam\steamapps\common\RimWorld\Mods\Multi Ordnance Framework\Source\Source\obj\Debug\MultiOrdnanceFramework.csproj.AssemblyReference.cache
+D:\ANNOP\Steam\steamapps\common\RimWorld\Mods\Multi Ordnance Framework\Source\Source\obj\Debug\MultiOrdnanceFramework.GeneratedMSBuildEditorConfig.editorconfig
+D:\ANNOP\Steam\steamapps\common\RimWorld\Mods\Multi Ordnance Framework\Source\Source\obj\Debug\MultiOrdnanceFramework.AssemblyInfoInputs.cache
+D:\ANNOP\Steam\steamapps\common\RimWorld\Mods\Multi Ordnance Framework\Source\Source\obj\Debug\MultiOrdnanceFramework.AssemblyInfo.cs
+D:\ANNOP\Steam\steamapps\common\RimWorld\Mods\Multi Ordnance Framework\Source\Source\obj\Debug\MultiOrdnanceFramework.csproj.CoreCompileInputs.cache
+D:\ANNOP\Steam\steamapps\common\RimWorld\Mods\Multi Ordnance Framework\Source\Source\obj\Debug\MultiOrdnanceFramework.dll
+D:\ANNOP\Steam\steamapps\common\RimWorld\Mods\Multi Ordnance Framework\1.5\Assemblies\MultiOrdnanceFramework.dll

@@ -15,11 +15,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ANNOP\\Steam\\steamapps\\common\\RimWorld\\Mods\\Shieldbreaker Permits\\Source\\Source\\ShieldbreakerPermits.csproj",
-      "projectName": "ShieldbreakerPermits",
-      "projectPath": "D:\\ANNOP\\Steam\\steamapps\\common\\RimWorld\\Mods\\Shieldbreaker Permits\\Source\\Source\\ShieldbreakerPermits.csproj",
+      "projectUniqueName": "D:\\ANNOP\\Steam\\steamapps\\common\\RimWorld\\Mods\\Multi Ordnance Framework\\Source\\Source\\MultiOrdnanceFramework.csproj",
+      "projectName": "MultiOrdnanceFramework",
+      "projectPath": "D:\\ANNOP\\Steam\\steamapps\\common\\RimWorld\\Mods\\Multi Ordnance Framework\\Source\\Source\\MultiOrdnanceFramework.csproj",
       "packagesPath": "C:\\Users\\ANNOP\\.nuget\\packages\\",
-      "outputPath": "D:\\ANNOP\\Steam\\steamapps\\common\\RimWorld\\Mods\\Shieldbreaker Permits\\Source\\Source\\obj\\",
+      "outputPath": "D:\\ANNOP\\Steam\\steamapps\\common\\RimWorld\\Mods\\Multi Ordnance Framework\\Source\\Source\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Users\\ANNOP\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder",
@@ -48,12 +48,17 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
       "net48": {
         "targetAlias": "net480",
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
       }
     }
   }
