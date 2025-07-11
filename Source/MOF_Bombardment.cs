@@ -56,7 +56,7 @@ namespace MultiOrdnanceFramework
 			}
 		}
 
-        public override void Tick()
+        protected override void Tick()
 		{
 			if (base.Destroyed)
 			{
@@ -156,6 +156,7 @@ namespace MultiOrdnanceFramework
 						return;
 					}
 			}
+			
 			IntVec3 targetCell = proj.targetCell;
 			Map map = base.Map;
 			float randomInRange = this.explosionRadiusRange.RandomInRange;
@@ -164,7 +165,8 @@ namespace MultiOrdnanceFramework
 			float armorPenetration = -1f;
 			SoundDef explosionSound = null;
 			ThingDef def = this.def;
-			GenExplosion.DoExplosion(targetCell, map, randomInRange, damage, instigator, damAmount, armorPenetration, explosionSound, this.weaponDef, def, null, postExplosionThing, 1f, 3, postExplosionGas, false, null, 0f, 1, 0f, false, null, null, null, true, 1f, 0f, true, null, 1f);
+
+			GenExplosion.DoExplosion(targetCell, map, randomInRange, damage, instigator, damAmount, armorPenetration, explosionSound, this.weaponDef, def, null, postExplosionThing, 1f, 3, postExplosionGas);
 		}
 
 		protected override void DrawAt(Vector3 drawLoc, bool flip = false)
